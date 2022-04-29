@@ -6,7 +6,7 @@ import os
 
 FPS = 60
 WIDTH = 500
-HEIGHE = 600
+HEIGHT = 600
 
 BLACK = (0,0,0)
 WHITE = (255,255,255)
@@ -17,7 +17,7 @@ YELLOW =(255,255,0)
 #Set up awal dan pembuatan game
 pygame.init()
 pygame.mixer.init()
-screen = pygame.display.set_mode((WIDTH, HEIGHE))
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
 img = pygame.image.load("head.png")
 pygame.display.set_icon(img)
 pygame.display.set_caption("Dendam si Tikus")
@@ -25,9 +25,12 @@ clock = pygame.time.Clock()
 
 #Pemuatan gambar
 background_img = pygame.image.load(os.path.join("img","background.png")).convert()
-mouse_img = pygame.image.load(os.path.join("img","mouse.png")).convert()
-mouse_mini_img = pygame.transform.scale(mouse_img,(25,19))  
-mouse_mini_img.set_colorkey(BLACK)
+mouse_img1 = pygame.image.load(os.path.join("img","mouse1.png")).convert_alpha()
+mouse_img2 = pygame.image.load(os.path.join("img","mouse2.png")).convert_alpha()
+mouse_mini_img1 = pygame.transform.scale(mouse_img1,(14,34))
+mouse_mini_img1.set_colorkey(BLACK)
+mouse_mini_img2 = pygame.transform.scale(mouse_img2,(14,34))
+mouse_mini_img2.set_colorkey(BLACK)
 poison_img = pygame.image.load(os.path.join("img","poison.png")).convert_alpha()
 cat_imgs = []
 for i in range(7): 
@@ -62,6 +65,59 @@ pygame.mixer.music.set_volume(0.3)
 
 font_name = os.path.join("font.otf")  
 
+def character_selection():
+    screen.fill(BLACK)
+    screen.blit(background_img, (0, 0))
+    draw_text(screen,"Pilih Karakter Kamu",30,WIDTH/2,HEIGHT/9)
+
+    #Posisi gambar mouse1
+    x1 = 65
+    y1 = 150
+    player_img1 = pygame.image.load(os.path.join("img","mouse1_select.png")).convert_alpha()
+    screen.blit(player_img1, (x1,y1))
+    draw_text(screen,"HP : 100",20,WIDTH/4.5,HEIGHT*0.65)
+    draw_text(screen,"LIVES : 3",20,WIDTH/4.5,HEIGHT*0.70)
+
+    #Posisi gambar mouse2
+    x2 = 320
+    y2 = 150
+    player_img2 = pygame.image.load(os.path.join("img","mouse2_select.png")).convert_alpha()
+    screen.blit(player_img2, (x2,y2))
+    draw_text(screen,"HP : 150",20,WIDTH/1.3,HEIGHT*0.65)
+    draw_text(screen,"LIVES : 2",20,WIDTH/1.3,HEIGHT*0.70)
+
+    pygame.display.flip()
+    running = True
+    while (running):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                # Set posisi x, y pemilihan karakter
+                x1, y1 = event.pos
+                if player_img1.get_rect().collidepoint(x1-65, y1-150):
+                    players = "1"
+                    running = False
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                # Set posisi x, y pemilihan karakter
+                x2, y2 = event.pos
+                if player_img2.get_rect().collidepoint(x2-320, y2-150):
+                    players = "2"
+                    running = False
+    return(players)
+
+def lose():
+    draw_text(screen,"Kamu Kalah!",60,WIDTH/2,HEIGHT/4)
+    pygame.display.update()
+    waiting = True
+    while waiting:
+        clock.tick(FPS)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+            elif event.type == pygame.KEYDOWN:
+                waiting = False
+
 def draw_text(surf, text ,size ,x ,y):
     font = pygame.font.Font(font_name,size)
     text_surface = font.render(text,True, WHITE)
@@ -75,12 +131,23 @@ def new_cat():
     all_sprites.add(r)
     cats.add(r)
 
-def draw_health(surf,hp,x,y): 
+def draw_health1(surf,hp,x,y): 
     if hp < 0:
         hp = 0
     BAR_LENGTH = 100 
     BAR_HEIGHT = 10
     fill = (hp/100)*BAR_LENGTH 
+    outline_rect =pygame.Rect(x,y,BAR_LENGTH,BAR_HEIGHT )
+    fill_rect = pygame.Rect(x,y,fill,BAR_HEIGHT)
+    pygame.draw.rect(surf,GREEN,fill_rect)
+    pygame.draw.rect(surf,WHITE,outline_rect,2)
+
+def draw_health2(surf,hp,x,y): 
+    if hp < 0:
+        hp = 0
+    BAR_LENGTH = 150 
+    BAR_HEIGHT = 10
+    fill = (hp/150)*BAR_LENGTH 
     outline_rect =pygame.Rect(x,y,BAR_LENGTH,BAR_HEIGHT )
     fill_rect = pygame.Rect(x,y,fill,BAR_HEIGHT)
     pygame.draw.rect(surf,GREEN,fill_rect)
@@ -96,10 +163,10 @@ def draw_lives(surf,lives, img, x,y):
 def draw_init():
     screen.fill(BLACK)
     screen.blit(background_img, (0, 0))
-    draw_text(screen,"Dendam si Tikus",40,WIDTH/2,HEIGHE/4)
-    draw_text(screen,'Gunakan ARROW KEY atau A D untuk bergerak',15,WIDTH/2,HEIGHE/2)
-    draw_text(screen, 'Gunakan SPASI atau LEFT MOUSE BUTTON untuk menembak', 12, WIDTH/2, HEIGHE/1.87)
-    draw_text(screen,"Tekan sembarang tombol untuk memulai permainan",15,WIDTH/2,HEIGHE*3/4)
+    draw_text(screen,"Dendam si Tikus",40,WIDTH/2,HEIGHT/4)
+    draw_text(screen,'Gunakan ARROW KEY atau A D untuk bergerak',15,WIDTH/2,HEIGHT/2)
+    draw_text(screen, 'Gunakan SPASI atau LEFT MOUSE BUTTON untuk menembak', 12, WIDTH/2, HEIGHT/1.87)
+    draw_text(screen,"Tekan sembarang tombol untuk memulai permainan",15,WIDTH/2,HEIGHT*3/4)
     pygame.display.update()
     waiting = True
     while waiting:
@@ -113,22 +180,7 @@ def draw_init():
 class Mouse(pygame.sprite.Sprite):  
     def __init__(self):
         # set sprite mouse
-        pygame.sprite.Sprite.__init__(self) 
-        self.image = pygame.transform.scale(mouse_img, (74,62))
-        self.image.set_colorkey(BLACK)
-        self.rect = self.image.get_rect() 
-        self.radius = 20
-        
-        # set property2 posisi darah dll pada mouse di game
-        self.rect.centerx = WIDTH / 2
-        self.rect.bottom = HEIGHE - 10
-        self.speedx = 8
-        self.__health = 100 
-        self.__lives = 3
-        self.hidden = False
-        self.hide_time = 0 
-        self.gun = 1
-        self.gun_time = 0 
+        pygame.sprite.Sprite.__init__(self)
 
     #polimorphism
     # dijalankan per frame update
@@ -145,7 +197,7 @@ class Mouse(pygame.sprite.Sprite):
         if self.hidden and now - self.hide_time > 1000:
             self.hidden = False
             self.rect.centerx = WIDTH / 2
-            self.rect.bottom = HEIGHE - 10
+            self.rect.bottom = HEIGHT - 10
 
         # baca inputan keyboard
         Key_pressed = pygame.key.get_pressed()
@@ -193,12 +245,50 @@ class Mouse(pygame.sprite.Sprite):
     def hide(self):
         self.hidden = True
         self.hide_time = pygame.time.get_ticks()
-        self.rect.center = (WIDTH/2, HEIGHE+500)
+        self.rect.center = (WIDTH/2, HEIGHT+500)
 
     # upgrade tembakan
     def gun_up(self):
         self.gun += 1
         self.gun_time = pygame.time.get_ticks()
+
+class Mouse1(Mouse):
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.transform.scale(mouse_img1, (31,73))
+        self.image.set_colorkey(BLACK)
+        self.rect = self.image.get_rect() 
+        self.radius = 20
+        
+        # set property2 posisi darah dll pada mouse di game
+        self.rect.centerx = WIDTH / 2
+        self.rect.bottom = HEIGHT - 10
+        self.speedx = 8
+        self.__health = 100 
+        self.__lives = 3
+        self.hidden = False
+        self.hide_time = 0 
+        self.gun = 1
+        self.gun_time = 0
+
+class Mouse2(Mouse):
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.transform.scale(mouse_img2, (31,73))
+        self.image.set_colorkey(BLACK)
+        self.rect = self.image.get_rect() 
+        self.radius = 20
+        
+        # set property2 posisi darah dll pada mouse di game
+        self.rect.centerx = WIDTH / 2
+        self.rect.bottom = HEIGHT - 10
+        self.speedx = 8
+        self.__health = 150 
+        self.__lives = 2
+        self.hidden = False
+        self.hide_time = 0 
+        self.gun = 1
+        self.gun_time = 0 
 
 class cat(pygame.sprite.Sprite):
     def __init__(self):
@@ -233,7 +323,7 @@ class cat(pygame.sprite.Sprite):
         self.rect.x += self.speedx 
 
         # set posisi kucing + validasi
-        if self.rect.top > HEIGHE or self.rect.left > WIDTH or self.rect.right < 0:
+        if self.rect.top > HEIGHT or self.rect.left > WIDTH or self.rect.right < 0:
             self.rect.x = random.randrange(0,WIDTH - self.rect.width)
             self.rect.y = random.randrange(-100,-40)
             self.speedy = random.randrange(2,7)
@@ -297,15 +387,14 @@ class Power(pygame.sprite.Sprite):
             self.rect.y += self.speedy
 
             # ketika objek keluar dari layar pantau, hilangkan objeknya
-            if self.rect.top > HEIGHE: 
+            if self.rect.top > HEIGHT: 
                 self.kill() 
             
 all_sprites = pygame.sprite.Group()
 cats = pygame.sprite.Group()
 poisons = pygame.sprite.Group()
 powers = pygame.sprite.Group()
-mouse = Mouse() 
-all_sprites.add(mouse)
+
 for i in range(8):
     new_cat()
 score = 0
@@ -313,80 +402,157 @@ pygame.mixer.music.play(-1)
 
 # looping pada game
 show_init = True
+character_select = True
 running = True
+losing = True
+
 while running:
+    if character_select:
+        players = character_selection()
+        if players == "1":
+            mouse = Mouse1()
+        elif players == "2":
+            mouse = Mouse2()
+        character_select = False
+    all_sprites.add(mouse)
+
+    screen.fill(BLACK) 
+
     if show_init:
         draw_init()
         show_init = False
 
-
-
-    clock.tick(FPS)
-    for event in pygame.event.get():
-        Key_pressed = pygame.key.get_pressed()
-        if event.type == pygame.QUIT:
-            running = False
-        elif event.type == pygame.MOUSEBUTTONDOWN:
-            if event.button == 1:
+    if players == "1":
+        clock.tick(FPS)    
+        for event in pygame.event.get():
+            Key_pressed = pygame.key.get_pressed()
+            if event.type == pygame.QUIT:
+                running = False
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    mouse.shoot()
+            elif Key_pressed[pygame.K_SPACE]:
                 mouse.shoot()
-        elif Key_pressed[pygame.K_SPACE]:
-            mouse.shoot()
 
-    all_sprites.update()
-    hits = pygame.sprite.groupcollide(cats,poisons,True,True)
-    for hit in hits:
-        random.choice(expl_sounds).play()
-        score += hit.radius 
-        expl = Explosion(hit.rect.center,"lg")
-        all_sprites.add(expl)
-        if random.random() > 0.85:
-            pow = Power(hit.rect.center)
-            all_sprites.add(pow)
-            powers.add(pow)
-        new_cat()
-    
-    hits = pygame.sprite.spritecollide(mouse,cats, True,pygame.sprite.collide_circle)
-    #mouse(hits)
+        all_sprites.update()
+        hits = pygame.sprite.groupcollide(cats,poisons,True,True)
 
-    for hit in hits:
-        new_cat()
-        mouse._Mouse__health -= hit.radius
-        expl = Explosion(hit.rect.center, "sm")
-        all_sprites.add(expl)
-        if mouse._Mouse__health <= 0:
-            death_expl = Explosion(mouse.rect.center, 'mouse')
-            all_sprites.add(death_expl)
-            die_sound.play()
-            mouse._Mouse__lives -= 1
-            mouse._Mouse__health = 100
-            mouse.hide()
+        for hit in hits:
+            random.choice(expl_sounds).play()
+            score += hit.radius 
+            expl = Explosion(hit.rect.center,"lg")
+            all_sprites.add(expl)
+            if random.random() > 0.85:
+                pow = Power(hit.rect.center)
+                all_sprites.add(pow)
+                powers.add(pow)
+            new_cat()
 
-    #Mouse mendapat buff
-    hits = pygame.sprite.spritecollide(mouse, powers, True)
-    #Mouse_hit_power(hits)
+        hits = pygame.sprite.spritecollide(mouse,cats, True,pygame.sprite.collide_circle)
 
-    for hit in hits:
-        if hit.type == "shield":
-            mouse._Mouse__health += 20
-            if mouse._Mouse__health > 100:
-                mouse._Mouse__health = 100
-            shield_sound.play()
+        for hit in hits:
+            new_cat()
+            mouse._Mouse1__health -= hit.radius
+            expl = Explosion(hit.rect.center,"sm")
+            all_sprites.add(expl)
+            if mouse._Mouse1__health <=0:
+                death_expl = Explosion(mouse.rect.center,'mouse')
+                all_sprites.add(death_expl)
+                die_sound.play() 
+                mouse._Mouse1__lives -= 1
+                mouse._Mouse1__health = 100
+                mouse.hide()
 
-        elif hit.type == "gun":
-            mouse.gun_up()
-            gun_sound.play()
+        hits = pygame.sprite.spritecollide(mouse,powers,True)
 
-    if mouse._Mouse__lives == 0:
-        running = False
+        for hit in hits:
+            if hit.type == "shield":
+                mouse._Mouse1__health += 20
+                if mouse._Mouse1__health > 100:
+                    mouse._Mouse1__health = 100
+                shield_sound.play()
 
-    screen.fill(BLACK)
-    screen.blit(background_img, (0, 0))
-    all_sprites.draw(screen)
-    draw_text(screen, str(score), 19, WIDTH/2, 10)
-    draw_health(screen, mouse._Mouse__health, 10, 10)
-    draw_lives(screen, mouse._Mouse__lives, mouse_mini_img, WIDTH - 100, 15)
-    pygame.display.update()
-    pygame.display.update()
+            elif hit.type == "gun":
+                mouse.gun_up()        
+                gun_sound.play()
 
+        if mouse._Mouse1__lives == 0:
+            running = False
+
+        screen.fill(BLACK) 
+        screen.blit(background_img,(0,0))  
+        all_sprites.draw(screen)
+        draw_text(screen,str(score),19,WIDTH/2, 10)
+        draw_health1(screen,mouse._Mouse1__health,10,10)
+        draw_lives(screen,mouse._Mouse1__lives,mouse_mini_img1,WIDTH - 100, 15)
+        pygame.display.update()
+    elif players == "2":
+        clock.tick(FPS)    
+        for event in pygame.event.get():
+            Key_pressed = pygame.key.get_pressed()
+            if event.type == pygame.QUIT:
+                running = False
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    mouse.shoot()
+            elif Key_pressed[pygame.K_SPACE]:
+                mouse.shoot()
+
+        all_sprites.update()
+        hits = pygame.sprite.groupcollide(cats,poisons,True,True)
+
+        for hit in hits:
+            random.choice(expl_sounds).play()
+            score += hit.radius 
+            expl = Explosion(hit.rect.center,"lg")
+            all_sprites.add(expl)
+            if random.random() > 0.85:
+                pow = Power(hit.rect.center)
+                all_sprites.add(pow)
+                powers.add(pow)
+            new_cat()
+
+        hits = pygame.sprite.spritecollide(mouse,cats, True,pygame.sprite.collide_circle)
+
+        for hit in hits:
+            new_cat()
+            mouse._Mouse2__health -= hit.radius
+            expl = Explosion(hit.rect.center,"sm")
+            all_sprites.add(expl)
+            if mouse._Mouse2__health <=0:
+                death_expl = Explosion(mouse.rect.center,'mouse')
+                all_sprites.add(death_expl)
+                die_sound.play() 
+                mouse._Mouse2__lives -= 1
+                mouse._Mouse2__health = 100
+                mouse.hide()
+
+        hits = pygame.sprite.spritecollide(mouse,powers,True)
+
+        for hit in hits:
+            if hit.type == "shield":
+                mouse._Mouse2__health += 20
+                if mouse._Mouse2__health > 100:
+                    mouse._Mouse2__health = 100
+                shield_sound.play()
+
+            elif hit.type == "gun":
+                mouse.gun_up()        
+                gun_sound.play()
+
+        if mouse._Mouse2__lives == 0:
+            running = False
+
+        screen.fill(BLACK) 
+        screen.blit(background_img,(0,0))  
+        all_sprites.draw(screen)
+        draw_text(screen,str(score),19,WIDTH/2, 10)
+        draw_health2(screen,mouse._Mouse2__health,10,10)
+        draw_lives(screen,mouse._Mouse2__lives,mouse_mini_img2,WIDTH - 100, 15)
+        pygame.display.update()
+
+if losing:
+    lose()
+    losing = False
 
 pygame.quit()
