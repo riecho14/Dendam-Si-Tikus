@@ -9,12 +9,13 @@ WIDTH = 500
 HEIGHT = 600
 
 BLACK = (0,0,0)
+TEXT = (32,32,32)
 WHITE = (255,255,255)
 GREEN = (0,255,0)
 RED = (255,0,0)
 YELLOW =(255,255,0)
 
-#Set up awal dan pembuatan game
+#Set up awal dan pembuatan gamed
 pygame.init()
 pygame.mixer.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -68,23 +69,25 @@ font_name = os.path.join("font.otf")
 def character_selection():
     screen.fill(BLACK)
     screen.blit(background_img, (0, 0))
-    draw_text(screen,"Pilih Karakter Kamu",30,WIDTH/2,HEIGHT/9)
+    draw_text(screen,"Pilih Karakter Kamu",30,WIDTH/2,HEIGHT/10)
 
     #Posisi gambar mouse1
     x1 = 65
     y1 = 150
     player_img1 = pygame.image.load(os.path.join("img","mouse1_select.png")).convert_alpha()
     screen.blit(player_img1, (x1,y1))
-    draw_text(screen,"HP : 100",20,WIDTH/4.5,HEIGHT*0.65)
-    draw_text(screen,"LIVES : 3",20,WIDTH/4.5,HEIGHT*0.70)
+    draw_text(screen, "Mouse 1", 24, WIDTH/4.5, HEIGHT*0.65)
+    draw_text(screen,"HP : 100",18,WIDTH/4.5,HEIGHT*0.70)
+    draw_text(screen,"LIVES : 3",18,WIDTH/4.5,HEIGHT*0.75)
 
     #Posisi gambar mouse2
     x2 = 320
     y2 = 150
     player_img2 = pygame.image.load(os.path.join("img","mouse2_select.png")).convert_alpha()
     screen.blit(player_img2, (x2,y2))
-    draw_text(screen,"HP : 150",20,WIDTH/1.3,HEIGHT*0.65)
-    draw_text(screen,"LIVES : 2",20,WIDTH/1.3,HEIGHT*0.70)
+    draw_text(screen, "Mouse 2", 24, WIDTH/1.3, HEIGHT*0.65)
+    draw_text(screen,"HP : 150",18,WIDTH/1.3,HEIGHT*0.70)
+    draw_text(screen,"LIVES : 2",18,WIDTH/1.3,HEIGHT*0.75)
 
     pygame.display.flip()
     running = True
@@ -120,7 +123,7 @@ def lose():
 
 def draw_text(surf, text ,size ,x ,y):
     font = pygame.font.Font(font_name,size)
-    text_surface = font.render(text,True, WHITE)
+    text_surface = font.render(text,True, TEXT)
     text_rect = text_surface.get_rect()
     text_rect.centerx = x
     text_rect.top = y
@@ -407,6 +410,10 @@ running = True
 losing = True
 
 while running:
+    if show_init:
+        draw_init()
+        show_init = False
+
     if character_select:
         players = character_selection()
         if players == "1":
@@ -416,11 +423,7 @@ while running:
         character_select = False
     all_sprites.add(mouse)
 
-    screen.fill(BLACK) 
-
-    if show_init:
-        draw_init()
-        show_init = False
+    screen.fill(BLACK)
 
     if players == "1":
         clock.tick(FPS)    
