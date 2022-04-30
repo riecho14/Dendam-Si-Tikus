@@ -166,10 +166,10 @@ def draw_lives(surf,lives, img, x,y):
 def draw_init():
     screen.fill(BLACK)
     screen.blit(background_img, (0, 0))
-    draw_text(screen,"Dendam si Tikus",40,WIDTH/2,HEIGHT/4)
-    draw_text(screen,'Gunakan ARROW KEY atau A D untuk bergerak',15,WIDTH/2,HEIGHT/2)
-    draw_text(screen, 'Gunakan SPASI atau LEFT MOUSE BUTTON untuk menembak', 12, WIDTH/2, HEIGHT/1.87)
-    draw_text(screen,"Tekan sembarang tombol untuk memulai permainan",15,WIDTH/2,HEIGHT*3/4)
+    draw_text(screen,"DENDAM SI TIKUS",40,WIDTH/2,HEIGHT/4)
+    draw_text(screen,'Tekan ARROW KEY atau A D untuk bergerak',13,WIDTH/2,HEIGHT/2)
+    draw_text(screen, 'Tekan SPASI atau LEFT MOUSE BUTTON untuk menembak', 13, WIDTH/2, HEIGHT/1.87)
+    draw_text(screen,"Tekan apa saja untuk memulai permainan",15,WIDTH/2,HEIGHT*3/4)
     pygame.display.update()
     waiting = True
     while waiting:
