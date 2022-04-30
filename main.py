@@ -3,6 +3,7 @@ from asyncio import shield
 import pygame
 import random
 import os
+from abc import ABC, abstractmethod
 
 FPS = 60
 WIDTH = 500
@@ -180,10 +181,14 @@ def draw_init():
             elif event.type == pygame.KEYDOWN:
                 waiting = False
 
-class Mouse(pygame.sprite.Sprite):  
+#class utama
+class Mouse(pygame.sprite.Sprite, ABC):
     def __init__(self):
         # set sprite mouse
         pygame.sprite.Sprite.__init__(self)
+        self.speedx = 8
+        self.gun = 1
+        self.gun_time = 0
 
     #polimorphism
     # dijalankan per frame update
@@ -250,11 +255,12 @@ class Mouse(pygame.sprite.Sprite):
         self.hide_time = pygame.time.get_ticks()
         self.rect.center = (WIDTH/2, HEIGHT+500)
 
-    # upgrade tembakan
+    # upgrade tembakan, abstract method
+    @abstractmethod
     def gun_up(self):
-        self.gun += 1
-        self.gun_time = pygame.time.get_ticks()
+        pass
 
+#mewarisi class utama Mouse
 class Mouse1(Mouse):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
@@ -274,6 +280,12 @@ class Mouse1(Mouse):
         self.gun = 1
         self.gun_time = 0
 
+    #abstract method
+    def gun_up(self):
+        self.gun += 1
+        self.gun_time = pygame.time.get_ticks()
+
+#mewarisi class utama Mouse
 class Mouse2(Mouse):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
@@ -291,7 +303,12 @@ class Mouse2(Mouse):
         self.hidden = False
         self.hide_time = 0 
         self.gun = 1
-        self.gun_time = 0 
+        self.gun_time = 0
+
+    #abstract method
+    def gun_up(self):
+        self.gun += 1
+        self.gun_time = pygame.time.get_ticks()
 
 class cat(pygame.sprite.Sprite):
     def __init__(self):
