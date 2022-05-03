@@ -552,8 +552,8 @@ while running:
         for hit in hits:
             if hit.type == "shield":
                 mouse._Mouse2__health += 20
-                if mouse._Mouse2__health > 100:
-                    mouse._Mouse2__health = 100
+                if mouse._Mouse2__health > 150:
+                    mouse._Mouse2__health = 150
                 shield_sound.play()
 
             elif hit.type == "gun":
