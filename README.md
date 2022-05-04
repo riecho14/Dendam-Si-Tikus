@@ -3,8 +3,8 @@
 > Dendam si tikus. This project is a game development project using the pygame library.
 
 ## Screenshots
-![App Screenshot](Screenshots/game1.png)
-![App Screenshot](Screenshots/game2.png)
+![App Screenshot](Screenshots/game1.PNG)
+![App Screenshot](Screenshots/game2.PNG)
 
 ## Description
 This application is a game about a mouse who tries to beat the cat by attacking the cats using poison. This game aims to get as much score as possible by avoiding and defeating the cats that come. Rat's life will be reduced when the cat touches the mouse. The game will end when the mouse's life has run out.
