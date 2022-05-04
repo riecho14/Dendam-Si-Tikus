@@ -1,29 +1,34 @@
-Judul proyek: 
-Dendam si tikus.Proyek ini adalah proyek pembuatan sebuah game yang menggunakan library pygame. 
+<img alt="logo" src="https://raw.githubusercontent.com/riecho14/Dendam-Si-Tikus/main/logo.svg" width="400">
 
-Deskripsi Proyek:
-Aplikasi ini merupakan permainan tentang seekor tikus yang berusaha mengalahkan kucing dengan cara menyerang para kucing menggunakan racun. 
-Permainan ini bertujuan untuk mendapatkan score sebanyak-banyaknya dengan cara menghindari dan mengalahkan para kucing yang berdatangan. 
-Nyawa Tikus akan berkurang saat kucing menyentuh tikus. Permainan ini akan berakhirjika nyawa tikus telah habis.
+> Dendam si tikus. This project is a game development project using the pygame library.
 
-Dependensi paket (library) yang dibutuhkan untuk menjalankan aplikasi:
-from ast import Pow
-from asyncio import shield
-import pygame
-import random
-import os
+## Screenshots
+![App Screenshot](Screenshots/game1.png)
+![App Screenshot](Screenshots/game2.png)
+![App Screenshot](Screenshots/game3.png)
+![App Screenshot](Screenshots/game4.png)
 
-Cara bermain:
-Cara memeinkan game ini adalah dengan menggerakan tikus menggunakan arrow key dan A/D  dan spasi atau klik kiri mouse untuk menembak
-tikus tidak boleh menyentuk kucing atau darah dan nyawa akan berkurang.
+## Description
+This application is a game about a mouse who tries to beat the cat by attacking the cats using poison. This game aims to get as much score as possible by avoiding and defeating the cats that come. Rat's life will be reduced when the cat touches the mouse. The game will end when the mouse's life has run out.
 
-UML class Diagram:
-https://app.diagrams.net/#G1_XOE-PlgSXWo9SLq5j_CiPxwe3gQWnJT
+## Package dependencies (libraries) needed to run the application
+- from ast import Pow
+- from asyncio import shield
+- import pygame
+- import random
+- import os
 
-Kontributor pengembangan aplikasi:
-120140021 Mila Oktaviani
-120140088 Bayu Nindioko
-120140107 Naufal Rotif Dewanto
-120140111 Azka Muzhaffar Sutawidjaja
-120140119 Ericho Aldo Firano
-120140191 Andri Setiawan
+## How to play
+The way to play this game is to move the mouse using arrow keys and A/D and space bar or left mouse click to shoot
+mice should not touch cats or blood and lives will be reduced.
+
+## UML Class Diagram
+UML Class Diagram of this game can be seen at [Diagrams.net](https://app.diagrams.net/#G1_XOE-PlgSXWo9SLq5j_CiPxwe3gQWnJT)
+
+## Game development contributors
+- 120140021 Mila Oktaviani
+- 120140088 Bayu Nindioko
+- 120140107 Naufal Rotif Dewanto
+- 120140111 Azka Muzhaffar Sutawidjaja
+- 120140119 Ericho Aldo Firano
+- 120140191 Andri Setiawan
