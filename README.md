@@ -1,15 +1,17 @@
 <img alt="logo" src="https://raw.githubusercontent.com/riecho14/Dendam-Si-Tikus/main/logo.svg" width="400">
 
-> Dendam si tikus. This project is a game development project using the pygame library.
+> Dendam si tikus. Proyek ini adalah proyek game menggunakan pygame.
 
 ## Screenshots
 ![App Screenshot](Screenshots/game1.PNG)
 ![App Screenshot](Screenshots/game2.PNG)
 
-## Description
-This application is a game about a mouse who tries to beat the cat by attacking the cats using poison. This game aims to get as much score as possible by avoiding and defeating the cats that come. Rat's life will be reduced when the cat touches the mouse. The game will end when the mouse's life has run out.
+## Deskripsi Projek
+Aplikasi ini merupakan permainan tentang seekor tikus yang berusaha mengalahkan kucing dengan cara menyerang para kucing menggunakan racun. 
 
-## Package dependencies (libraries) needed to run the application
+Permainan ini bertujuan untuk mendapatkan score sebanyak-banyaknya dengan cara menghindari dan mengalahkan para kucing yang berdatangan. Nyawa Tikus akan berkurang saat kucing menyentuh tikus. Permainan ini akan berakhirjika nyawa tikus telah habis.
+
+## Dependensi paket (library) yang dibutuhkan untuk menjalankan aplikasi
 - from ast import Pow
 - from asyncio import shield
 - import pygame
@@ -17,13 +19,13 @@ This application is a game about a mouse who tries to beat the cat by attacking 
 - import os
 
 ## How to play
-The way to play this game is to move the mouse using arrow keys and A/D and space bar or left mouse click to shoot
-mice should not touch cats or blood and lives will be reduced.
+Cara memainkan game ini adalah dengan menggerakkan mouse menggunakan tombol panah atau A/D dan spasi atau klik kiri mouse untuk menembak. Tikus tidak boleh menyentuh kucing atau darah dan nyawa akan berkurang.
 
 ## UML Class Diagram
-UML Class Diagram of this game can be seen at [Diagrams.net](https://app.diagrams.net/#G1_XOE-PlgSXWo9SLq5j_CiPxwe3gQWnJT)
+Diagram UML kami dapat dilihat pada link berikut. [Diagrams.net](https://app.diagrams.net/#G1_XOE-PlgSXWo9SLq5j_CiPxwe3gQWnJT)
 
-## Game development contributors
+## Kontributor pengembangan aplikasi
+RC-03
 - 120140021 Mila Oktaviani
 - 120140088 Bayu Nindioko
 - 120140107 Naufal Rotif Dewanto
