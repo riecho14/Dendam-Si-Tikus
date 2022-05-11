@@ -4,6 +4,7 @@ import pygame
 import random
 import os
 from abc import ABC, abstractmethod
+import json
 
 FPS = 60
 WIDTH = 500
@@ -165,9 +166,15 @@ def draw_lives(surf,lives, img, x,y):
         surf.blit(img,img_rect)
 
 def draw_init():
+    
+    with open('Data/topScore.json') as dat:
+        data = json.load(dat)
+    topScore = data['TopScore']
+
     screen.fill(BLACK)
     screen.blit(background_img, (0, 0))
-    draw_text(screen,"DENDAM SI TIKUS",40,WIDTH/2,HEIGHT/4)
+    draw_text(screen,"Dendam Si Tikus",40,WIDTH/2,HEIGHT/4)
+    draw_text(screen,"Nilai Tertinggi: " + str(topScore),15,WIDTH/2,HEIGHT/3)
     draw_text(screen,'Tekan ARROW KEY atau A D untuk bergerak',13,WIDTH/2,HEIGHT/2)
     draw_text(screen, 'Tekan SPASI atau LEFT MOUSE BUTTON untuk menembak', 13, WIDTH/2, HEIGHT/1.87)
     draw_text(screen,"Tekan apa saja untuk memulai permainan",15,WIDTH/2,HEIGHT*3/4)
@@ -452,7 +459,7 @@ while running:
                 if event.button == 1:
                     mouse.shoot()
             elif Key_pressed[pygame.K_SPACE]:
-                mouse.shoot()
+                pygame.time.set_timer(mouse.shoot(), 500)
 
         all_sprites.update()
         hits = pygame.sprite.groupcollide(cats,poisons,True,True)
@@ -571,7 +578,24 @@ while running:
         draw_lives(screen,mouse._Mouse2__lives,mouse_mini_img2,WIDTH - 100, 15)
         pygame.display.update()
 
+def uploadScore():
+    with open('Data/topScore.json') as dat:
+        data = json.load(dat)
+    topScore = data['TopScore']
+
+    if(score > topScore):
+        x = {
+            "TopScore": score
+        }
+        a_file = open("Data/topScore.json", "r")
+        json_object = json.load(a_file)
+        json_object["TopScore"] = score
+        
+        timpah = open("Data/topScore.json", "w") 
+        json.dump(json_object, timpah)
+
 if losing:
+    uploadScore()
     lose()
     losing = False
 
