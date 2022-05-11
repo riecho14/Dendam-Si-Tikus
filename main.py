@@ -114,9 +114,14 @@ def character_selection():
     return(players)
 
 def lose():
+    with open('Data/topScore.json') as dat:
+        data = json.load(dat)
+    topScore = data['TopScore']
+
     screen.fill(BLACK)
     screen.blit(background_img, (0, 0))
     draw_text(screen,"Game Over!",60,WIDTH/2,HEIGHT/4)
+    draw_text(screen,"Nilai Tertinggi: " + str(topScore),15,WIDTH/2,HEIGHT/4+70)
     pygame.display.update()
     waiting = True
     while waiting:
@@ -510,7 +515,7 @@ while running:
                 if event.button == 1:
                     mouse.shoot()
             elif Key_pressed[pygame.K_SPACE]:
-                pygame.time.set_timer(mouse.shoot(), 500)
+                mouse.shoot()
             elif Key_pressed[pygame.K_p]:
                 pause()
 
