@@ -66,7 +66,9 @@ expl_sounds = [
 pygame.mixer.music.load(os.path.join("sound","background.ogg"))
 pygame.mixer.music.set_volume(0.3)
 
-font_name = os.path.join("font.otf")  
+font_name = os.path.join("font.otf") 
+
+score = 0
 
 def character_selection():
     screen.fill(BLACK)
@@ -351,10 +353,19 @@ class cat(pygame.sprite.Sprite):
 
         # set posisi kucing + validasi
         if self.rect.top > HEIGHT or self.rect.left > WIDTH or self.rect.right < 0:
+
+            kecepatanDinamis = int(score / 100)
+            if kecepatanDinamis >= 23:
+                kecepatanDinamis = 23
+            elif kecepatanDinamis == 0:
+                kecepatanDinamis = 4
+
             self.rect.x = random.randrange(0,WIDTH - self.rect.width)
             self.rect.y = random.randrange(-100,-40)
-            self.speedy = random.randrange(2,7)
+            self.speedy = random.randrange(kecepatanDinamis - 3, kecepatanDinamis)
             self.speedx = random.randrange(-3,3)
+
+            print(kecepatanDinamis)
 
 class Poison(pygame.sprite.Sprite):
         def __init__(self,x,y):
@@ -424,7 +435,6 @@ powers = pygame.sprite.Group()
 
 for i in range(8):
     new_cat()
-score = 0
 pygame.mixer.music.play(-1)
 
 # looping pada game
