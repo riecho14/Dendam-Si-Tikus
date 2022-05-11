@@ -17,7 +17,7 @@ Permainan ini bertujuan untuk mendapatkan score sebanyak-banyaknya dengan cara m
 - import pygame
 - import random
 - import os
-- improt json
+- import json
 
 ## How to play
 Cara memainkan game ini adalah dengan menggerakkan mouse menggunakan tombol panah atau A/D dan spasi atau klik kiri mouse untuk menembak. Tikus tidak boleh menyentuh kucing atau darah dan nyawa akan berkurang.
