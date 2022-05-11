@@ -114,7 +114,9 @@ def character_selection():
     return(players)
 
 def lose():
-    draw_text(screen,"Kamu Kalah!",60,WIDTH/2,HEIGHT/4)
+    screen.fill(BLACK)
+    screen.blit(background_img, (0, 0))
+    draw_text(screen,"Game Over!",60,WIDTH/2,HEIGHT/4)
     pygame.display.update()
     waiting = True
     while waiting:
@@ -189,6 +191,45 @@ def draw_init():
                 pygame.quit()
             elif event.type == pygame.KEYDOWN:
                 waiting = False
+
+def pause():
+    paused = True
+
+    screen.fill(BLACK)
+    screen.blit(background_img, (0, 0))
+    draw_text(screen, "Pause", 35, WIDTH/2, HEIGHT/3)
+    draw_text(screen, "Tekan C Untuk Resume", 20, WIDTH/2, HEIGHT/3+70)
+    draw_text(screen, "Tekan Q untuk keluar", 20, WIDTH/2, HEIGHT/3+97)
+    pygame.display.update()
+
+    clock.tick(FPS)
+    while paused:
+        clock.tick(FPS)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_c:
+                    paused = False
+                elif event.key == pygame.K_q:
+                    pygame.quit()
+
+
+def uploadScore():
+    with open('Data/topScore.json') as dat:
+        data = json.load(dat)
+    topScore = data['TopScore']
+
+    if(score > topScore):
+        x = {
+            "TopScore": score
+        }
+        a_file = open("Data/topScore.json", "r")
+        json_object = json.load(a_file)
+        json_object["TopScore"] = score
+
+        timpah = open("Data/topScore.json", "w")
+        json.dump(json_object, timpah)
 
 #class utama
 class Mouse(pygame.sprite.Sprite, ABC):
@@ -470,6 +511,8 @@ while running:
                     mouse.shoot()
             elif Key_pressed[pygame.K_SPACE]:
                 pygame.time.set_timer(mouse.shoot(), 500)
+            elif Key_pressed[pygame.K_p]:
+                pause()
 
         all_sprites.update()
         hits = pygame.sprite.groupcollide(cats,poisons,True,True)
@@ -523,6 +566,8 @@ while running:
         draw_health1(screen,mouse._Mouse1__health,10,10)
         draw_lives(screen,mouse._Mouse1__lives,mouse_mini_img1,WIDTH - 100, 15)
         pygame.display.update()
+
+
     elif players == "2":
         clock.tick(FPS)    
         for event in pygame.event.get():
@@ -534,6 +579,8 @@ while running:
                     mouse.shoot()
             elif Key_pressed[pygame.K_SPACE]:
                 mouse.shoot()
+            elif Key_pressed[pygame.K_p]:
+                pause()
 
         all_sprites.update()
         hits = pygame.sprite.groupcollide(cats,poisons,True,True)
@@ -588,21 +635,7 @@ while running:
         draw_lives(screen,mouse._Mouse2__lives,mouse_mini_img2,WIDTH - 100, 15)
         pygame.display.update()
 
-def uploadScore():
-    with open('Data/topScore.json') as dat:
-        data = json.load(dat)
-    topScore = data['TopScore']
 
-    if(score > topScore):
-        x = {
-            "TopScore": score
-        }
-        a_file = open("Data/topScore.json", "r")
-        json_object = json.load(a_file)
-        json_object["TopScore"] = score
-        
-        timpah = open("Data/topScore.json", "w") 
-        json.dump(json_object, timpah)
 
 if losing:
     uploadScore()
