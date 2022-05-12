@@ -1,9 +1,9 @@
 from ast import Pow
 from asyncio import shield
+from abc import ABC, abstractmethod
 import pygame
 import random
 import os
-from abc import ABC, abstractmethod
 import json
 
 FPS = 60
@@ -153,7 +153,7 @@ def draw_health1(surf,hp,x,y):
     fill = (hp/100)*BAR_LENGTH 
     outline_rect =pygame.Rect(x,y,BAR_LENGTH,BAR_HEIGHT )
     fill_rect = pygame.Rect(x,y,fill,BAR_HEIGHT)
-    pygame.draw.rect(surf,GREEN,fill_rect)
+    pygame.draw.rect(surf,RED,fill_rect)
     pygame.draw.rect(surf,WHITE,outline_rect,2)
 
 def draw_health2(surf,hp,x,y): 
@@ -164,7 +164,7 @@ def draw_health2(surf,hp,x,y):
     fill = (hp/150)*BAR_LENGTH 
     outline_rect =pygame.Rect(x,y,BAR_LENGTH,BAR_HEIGHT )
     fill_rect = pygame.Rect(x,y,fill,BAR_HEIGHT)
-    pygame.draw.rect(surf,GREEN,fill_rect)
+    pygame.draw.rect(surf,RED,fill_rect)
     pygame.draw.rect(surf,WHITE,outline_rect,2)
 
 def draw_lives(surf,lives, img, x,y):
@@ -639,8 +639,6 @@ while running:
         draw_health2(screen,mouse._Mouse2__health,10,10)
         draw_lives(screen,mouse._Mouse2__lives,mouse_mini_img2,WIDTH - 100, 15)
         pygame.display.update()
-
-
 
 if losing:
     uploadScore()
