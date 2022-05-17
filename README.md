@@ -28,7 +28,7 @@ Diagram UML kami dapat dilihat pada link berikut. [klik disini](https://drive.go
 
 ## Kontributor pengembangan aplikasi
 RC-03
-| Name | NIM | Tugas | Github|
+| Nama | NIM | Tugas | Github|
 | :---: | :---: | :---: | :---: |
 | Mila Oktaviani             | 120140021 | Designer                     | -                                                         |
 | Bayu Nindioko              | 120140088 | Programmer                   | [BayuNindioko](https://github.com/BayuNindioko)           |
