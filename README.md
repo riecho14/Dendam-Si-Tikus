@@ -3,8 +3,8 @@
 > Dendam si tikus. Proyek ini adalah proyek game menggunakan pygame.
 
 ## Screenshots
-![App Screenshot](Screenshots/game1.PNG)
-![App Screenshot](Screenshots/game2.PNG)
+![App Screenshot](https://raw.githubusercontent.com/riecho14/assets/main/image17.png?token=GHSAT0AAAAAABUSQIFF4XWL4FLHBZVRU2AUYUDZ43Q)
+![App Screenshot](https://raw.githubusercontent.com/riecho14/assets/main/image41.png?token=GHSAT0AAAAAABUSQIFFVHSDWHCO54QDRPWSYUDZ5IA)
 
 ## Deskripsi projek
 Aplikasi ini merupakan permainan tentang seekor tikus yang berusaha mengalahkan kucing dengan cara menyerang para kucing menggunakan racun. 
