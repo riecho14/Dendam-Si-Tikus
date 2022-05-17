@@ -1,10 +1,10 @@
-<img alt="logo" src="https://raw.githubusercontent.com/riecho14/Dendam-Si-Tikus/main/logo.svg" width="400">
+<img alt="logo" src="https://raw.githubusercontent.com/riecho14/Dendam-Si-Tikus/image_assets/logo.svg" width="400">
 
 > Dendam si tikus. Proyek ini adalah proyek game menggunakan pygame.
 
 ## Screenshots
-![App Screenshot](https://github.com/riecho14/assets/blob/main/Dendam%20Si%20Tikus/image17.png?raw=true)
-![App Screenshot](https://github.com/riecho14/assets/blob/main/Dendam%20Si%20Tikus/image41.png?raw=true)
+![App Screenshot](https://raw.githubusercontent.com/riecho14/Dendam-Si-Tikus/image_assets/image17.png)
+![App Screenshot](https://raw.githubusercontent.com/riecho14/Dendam-Si-Tikus/image_assets/image41.png)
 
 ## Deskripsi projek
 Aplikasi ini merupakan permainan tentang seekor tikus yang berusaha mengalahkan kucing dengan cara menyerang para kucing menggunakan racun. 
