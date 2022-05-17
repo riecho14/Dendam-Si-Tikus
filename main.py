@@ -231,7 +231,7 @@ def pause():
                 if event.key == pygame.K_c:
                     paused = False
                 elif event.key == pygame.K_q:
-                    pygame.quit()
+                    lose()
 
 
 def uploadScore():
