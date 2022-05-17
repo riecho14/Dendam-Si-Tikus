@@ -15,8 +15,6 @@ Permainan ini bertujuan untuk mendapatkan score sebanyak-banyaknya dengan cara m
 Untuk menjalankan game membutuhkan Python3 dan modul Pygame
 
 ## Dependensi paket (library) yang dibutuhkan untuk menjalankan aplikasi
-- from ast import Pow
-- from asyncio import shield
 - import pygame
 - import random
 - import os
