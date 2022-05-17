@@ -26,7 +26,7 @@ Untuk menjalankan game membutuhkan Python3 dan modul Pygame
 Cara memainkan game ini adalah dengan menggerakkan mouse menggunakan tombol panah atau A/D dan spasi atau klik kiri mouse untuk menembak. Tikus tidak boleh menyentuh kucing atau darah dan nyawa akan berkurang.
 
 ## UML Class Diagram
-Diagram UML kami dapat dilihat pada link berikut. [klik disini](https://drive.google.com/file/d/1FcX4S-45jDknvLn2QgNUnih0ppBYcN5X/view?usp=sharing)
+Diagram UML kami dapat dilihat pada link berikut. [klik disini](https://drive.google.com/file/d/1LAYvOJ1K2GFAuZ-jwf2eEzmevZJPmsk8/view?usp=sharing)
 
 ## Kontributor pengembangan aplikasi
 RC-03
