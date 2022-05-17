@@ -12,7 +12,7 @@ Aplikasi ini merupakan permainan tentang seekor tikus yang berusaha mengalahkan 
 Permainan ini bertujuan untuk mendapatkan score sebanyak-banyaknya dengan cara menghindari dan mengalahkan para kucing yang berdatangan. Nyawa Tikus akan berkurang saat kucing menyentuh tikus. Permainan ini akan berakhir jika nyawa tikus telah habis.
 
 ## System requirements
-Untuk menjalankan game membutuhkan Python3 dan modul Pygame
+Untuk menjalankan game membutuhkan Python3 dan modul Pygame.
 
 ## Dependensi paket (library) yang dibutuhkan untuk menjalankan aplikasi
 - import pygame
@@ -20,7 +20,7 @@ Untuk menjalankan game membutuhkan Python3 dan modul Pygame
 - import os
 - import json
 
-## How to play
+## Cara bermain
 Cara memainkan game ini adalah dengan menggerakkan mouse menggunakan tombol panah atau A/D dan spasi atau klik kiri mouse untuk menembak. Tikus tidak boleh menyentuh kucing atau darah dan nyawa akan berkurang.
 
 ## UML Class Diagram
