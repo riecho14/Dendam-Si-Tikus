@@ -157,7 +157,7 @@ def draw_header():
     BG_LENGTH = 1000
     BG_HEIGHT = 50
     fill_rect = pygame.Rect(0,0,BG_LENGTH,BG_HEIGHT)
-    pygame.draw.rect(screen,BLACK,fill_rect)
+    pygame.draw.rect(screen,TEXT,fill_rect)
 
 def draw_health1(surf,hp,x,y): 
     if hp < 0:
