@@ -28,9 +28,11 @@ Diagram UML kami dapat dilihat pada link berikut. [klik disini](https://drive.go
 
 ## Kontributor pengembangan aplikasi
 RC-03
-- 120140021 Mila Oktaviani
-- 120140088 Bayu Nindioko
-- 120140107 Naufal Rotif Dewanto
-- 120140111 Azka Muzhaffar Sutawidjaja
-- 120140119 Ericho Aldo Firano
-- 120140191 Andri Setiawan
+| Name | NIM | Tugas | Github|
+| :---: | :---: | :---: | :---: |
+| Mila Oktaviani             | 120140021 | Designer                     | -                                                         |
+| Bayu Nindioko              | 120140088 | Programmer                   | [BayuNindioko](https://github.com/BayuNindioko)           |
+| Naufal Rotif Dewanto       | 120140107 | Programmer                   | [naufaldewanto37](https://github.com/naufaldewanto37)     |
+| Azka Muzhaffar Sutawidjaja | 120140111 | Designer                     | -                                                         |
+| Ericho Aldo Firano         | 120140119 | Programmer                   | [riecho14](https://github.com/riecho14)                   |
+| Andri Setiawan             | 120140191 | Programmer                   | [Andri450](https://github.com/Andri450)                   |
