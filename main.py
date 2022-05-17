@@ -1,5 +1,3 @@
-from ast import Pow
-from asyncio import shield
 from abc import ABC, abstractmethod
 import pygame
 import random
@@ -129,8 +127,10 @@ def lose():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-            elif event.type == pygame.KEYDOWN:
-                waiting = False
+            elif event.type == pygame.KEYDOWN:    
+                if event.key == pygame.K_q:
+                    waiting = False
+                    pygame.quit()
 
 def draw_text(surf, text ,size ,x ,y):
     font = pygame.font.Font(font_name,size)
@@ -413,7 +413,8 @@ class cat(pygame.sprite.Sprite):
 
         # set posisi kucing + validasi
         if self.rect.top > HEIGHT or self.rect.left > WIDTH or self.rect.right < 0:
-
+            
+            # Set kecepatan speed y setiap score bertambah
             kecepatanDinamis = int(score / 100)
             if kecepatanDinamis >= 23:
                 kecepatanDinamis = 23
@@ -469,7 +470,7 @@ class Explosion(pygame.sprite.Sprite):
                 center = self.rect.center
                 self.rect = self.image.get_rect()
                 self.rect.center = center
-                
+
 class Power(pygame.sprite.Sprite):
         def __init__(self,center):
             pygame.sprite.Sprite.__init__(self) 
@@ -487,7 +488,8 @@ class Power(pygame.sprite.Sprite):
             # ketika objek keluar dari layar pantau, hilangkan objeknya
             if self.rect.top > HEIGHT: 
                 self.kill() 
-            
+
+# Group untuk menampung semua objek yang ada di game
 all_sprites = pygame.sprite.Group()
 cats = pygame.sprite.Group()
 poisons = pygame.sprite.Group()
@@ -586,7 +588,6 @@ while running:
         draw_health1(screen,mouse._Mouse1__health,10,10)
         draw_lives(screen,mouse._Mouse1__lives,mouse_mini_img1,WIDTH - 100, 15)
         pygame.display.update()
-
 
     elif players == "2":
         clock.tick(FPS)    
