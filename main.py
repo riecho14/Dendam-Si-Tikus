@@ -145,6 +145,20 @@ def new_cat():
     all_sprites.add(r)
     cats.add(r)
 
+def draw_score(surf, text ,size ,x ,y):
+    font = pygame.font.Font(font_name,size)
+    text_surface = font.render(text,True, WHITE)
+    text_rect = text_surface.get_rect()
+    text_rect.centerx = x
+    text_rect.top = y
+    surf.blit(text_surface,text_rect)
+
+def draw_header():
+    BG_LENGTH = 1000
+    BG_HEIGHT = 50
+    fill_rect = pygame.Rect(0,0,BG_LENGTH,BG_HEIGHT)
+    pygame.draw.rect(screen,BLACK,fill_rect)
+
 def draw_health1(surf,hp,x,y): 
     if hp < 0:
         hp = 0
@@ -567,7 +581,8 @@ while running:
         screen.fill(BLACK) 
         screen.blit(background_img,(0,0))  
         all_sprites.draw(screen)
-        draw_text(screen,str(score),19,WIDTH/2, 10)
+        draw_header()
+        draw_score(screen,str(score),19,WIDTH/2, 10)
         draw_health1(screen,mouse._Mouse1__health,10,10)
         draw_lives(screen,mouse._Mouse1__lives,mouse_mini_img1,WIDTH - 100, 15)
         pygame.display.update()
@@ -635,7 +650,8 @@ while running:
         screen.fill(BLACK) 
         screen.blit(background_img,(0,0))  
         all_sprites.draw(screen)
-        draw_text(screen,str(score),19,WIDTH/2, 10)
+        draw_header()
+        draw_score(screen,str(score),19,WIDTH/2, 10)
         draw_health2(screen,mouse._Mouse2__health,10,10)
         draw_lives(screen,mouse._Mouse2__lives,mouse_mini_img2,WIDTH - 100, 15)
         pygame.display.update()
