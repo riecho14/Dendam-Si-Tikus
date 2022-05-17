@@ -357,7 +357,7 @@ class cat(pygame.sprite.Sprite):
             kecepatanDinamis = int(score / 100)
             if kecepatanDinamis >= 23:
                 kecepatanDinamis = 23
-            elif kecepatanDinamis == 0:
+            elif kecepatanDinamis < 4:
                 kecepatanDinamis = 4
 
             self.rect.x = random.randrange(0,WIDTH - self.rect.width)
