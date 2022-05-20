@@ -30,7 +30,7 @@ Diagram UML kami dapat dilihat pada link berikut. [klik disini](https://drive.go
 RC-03
 | Nama | NIM | Tugas | Github|
 | :---: | :---: | :---: | :---: |
-| Mila Oktaviani             | 120140021 | Designer                     | -                                                         |
+| Mila Oktaviani             | 120140021 | Designer                     | [milaoktvni31](https://github.com/milaoktvni31)           |
 | Bayu Nindioko              | 120140088 | Programmer                   | [BayuNindioko](https://github.com/BayuNindioko)           |
 | Naufal Rotif Dewanto       | 120140107 | Programmer                   | [naufaldewanto37](https://github.com/naufaldewanto37)     |
 | Azka Muzhaffar Sutawidjaja | 120140111 | Designer                     | -                                                         |
