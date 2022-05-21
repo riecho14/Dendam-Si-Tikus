@@ -33,6 +33,6 @@ RC-03
 | Mila Oktaviani             | 120140021 | Designer                     | [milaoktvni31](https://github.com/milaoktvni31)           |
 | Bayu Nindioko              | 120140088 | Programmer                   | [BayuNindioko](https://github.com/BayuNindioko)           |
 | Naufal Rotif Dewanto       | 120140107 | Programmer                   | [naufaldewanto37](https://github.com/naufaldewanto37)     |
-| Azka Muzhaffar Sutawidjaja | 120140111 | Designer                     | -                                                         |
+| Azka Muzhaffar Sutawidjaja | 120140111 | Designer                     | [Zkaaaaaaa](https://github.com/Zkaaaaaaa)                 |
 | Ericho Aldo Firano         | 120140119 | Programmer                   | [riecho14](https://github.com/riecho14)                   |
 | Andri Setiawan             | 120140191 | Programmer                   | [Andri450](https://github.com/Andri450)                   |
